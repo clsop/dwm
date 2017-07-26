@@ -1,0 +1,6 @@
+#login-form {
+	padding: 2em;
+	margin: 25vh auto;
+	@include background-gradient(to right bottom, 600px, 600px, $login-form-background-color1, $login-form-background-color2);
+	@include border(1px, solid, $login-form-background-color1, 2em);
+}

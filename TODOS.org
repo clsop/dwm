@@ -1,0 +1,31 @@
+#+TITLE: Drive With Me
+#+AUTHOT: Claus Petersen
+#+DATE: 16-07-2017
+
+* TODOS
+
+**  TODO service layer with baselayer as abstract using rxjs as transport
+
+*** NEXT create a service for each resources
+
+**  TODO finish login procedure
+
+*** NEXT use baseservice to async call login
+
+*** NEXT login should get and store token in localstorage
+
+*** NEXT create auth route
+
+*** NEXT redirect after login
+
+**  TODO language lib
+
+***  NEXT load json based on accepted language in browser
+
+***  NEXT export as instance
+
+**  TODO browser storage that includes localstorage, sessionstorage and cookies
+
+*** NEXT fallbacks when one not available (localstorage -> cookies, sessionstorage -> cookies)
+
+*** NEXT internal exception handling

@@ -1,0 +1,16 @@
+@mixin background-gradient($angle, $width, $height, $color1, $color2) {
+	background-image: linear-gradient($angle, $color1, $color2);
+	background-position: 0 0;
+	background-size: $width $height;
+}
+
+@mixin border($size, $variant, $color, $radius) {
+	border: $size $variant;
+	border-color: $color;
+	border-radius: $radius;
+}
+
+@mixin notification($bg-color, $border-color) {
+	background-color: $bg-color;
+    border-color: $border-color;
+}

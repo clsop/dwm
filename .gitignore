@@ -1,0 +1,17 @@
+#sublime
+*.sublime-project
+*.sublime-workspace
+
+#python
+**/__pycache__
+
+#built code
+src/**/*.js
+
+#resources
+assets/
+
+# packages managers
+bower_components/
+node_modules/
+*-lock.json
