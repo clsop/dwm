@@ -20,9 +20,10 @@ bundler.plugin('done', function (stats) {
 
 browserSync.init({
     server: {
-        baseDir: './src/client',
+        baseDir: './dist',
         index: 'index.html'
     },
+    serveStatic: ['./node_modules/semantic-ui-sass/icons', './node_modules/semantic-ui-sass/images'],
     logFileChanges: false,
     middleware: [
         webpackDevMiddleware(bundler, {
@@ -35,8 +36,8 @@ browserSync.init({
     cors: true,
     plugins: ['bs-fullscreen-message'],
     files: [
-        'src/client/index.html',
+        'src/client/index.hbs',
         'src/client/style/*.scss',
-        'src/client/*.tjs'
+        'src/client/**/*.tsx'
     ]
 });

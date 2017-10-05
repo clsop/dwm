@@ -1,31 +1,44 @@
 #+TITLE: Drive With Me
-#+AUTHOT: Claus Petersen
+#+AUTHOR: Claus Petersen
 #+DATE: 16-07-2017
 
 * TODOS
 
-**  TODO service layer with baselayer as abstract using rxjs as transport
+** NEXT finish login procedure
 
-*** NEXT create a service for each resources
+*** TODO Streamline login procedure
+    redirect to login page if old token used and if already logged in redirect to sender.
 
-**  TODO finish login procedure
+*** TODO setup semantic-ui with react login page
 
-*** NEXT use baseservice to async call login
+*** TODO use baseservice to async call login
+    Get things right with rxjs
 
-*** NEXT login should get and store token in localstorage
+*** DONE login should get and store token in localstorage
 
-*** NEXT create auth route
+*** DONE create auth route
 
-*** NEXT redirect after login
+*** DONE redirect after login
 
-**  TODO language lib
+** NEXT service layer with baselayer as abstract using rxjs as transport
 
-***  NEXT load json based on accepted language in browser
+*** TODO create a service for each resources
 
-***  NEXT export as instance
+** NEXT registration of new users
+   New account should be made possible with a preacquired token.
 
-**  TODO browser storage that includes localstorage, sessionstorage and cookies
+*** TODO add ui to login page
 
-*** NEXT fallbacks when one not available (localstorage -> cookies, sessionstorage -> cookies)
+*** TODO
 
-*** NEXT internal exception handling
+** NEXT language lib
+
+*** TODO load json based on accepted language in browser
+
+*** TODO export as instance
+
+** NEXT browser storage that includes localstorage, sessionstorage and cookies
+
+*** TODO fallbacks when one not available (localstorage -> cookies, sessionstorage -> cookies)
+
+*** TODO internal exception handling

@@ -1,6 +1,6 @@
 import { describe, it, beforeEach } from 'mocha';
 
-import BaseService from '../src/client/service/service';
+import BaseService from '../../src/client/service/service';
 
 import ApiStubs from './browser-api-stubs';
 

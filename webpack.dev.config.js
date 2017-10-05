@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const shared = require('./webpack.shared.config');
 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
+
 // webpack hot module entry for client updates
 Object.defineProperty(shared.entry, 'hot', {
     value: 'webpack-hot-middleware/client'
@@ -23,12 +26,25 @@ shared.module.rules.push({
     }, {
         loader: 'fast-sass-loader',
         options: {
-            includePaths: ['bower_components/skeleton-sass/skeleton', 'bower_components/normalize-scss/sass/normalize']
+            includePaths: ['node_modules/semantic-ui-sass', 'node_modules/semantic-ui-sass/icons', 'node_modules/semantic-ui-sass/images']
         }
     }]
 });
 
 // hot module replacement plugin
-shared.plugins.push(new webpack.HotModuleReplacementPlugin());
+shared.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+        title: 'Drive With Me',
+        filename: 'index.html',
+        template: 'src/client/index.hbs',
+        minify: {
+            html5: true
+        }
+    }), new InlineChunkManifestHtmlWebpackPlugin({
+        dropAsset: true,
+        extractManifest: false
+    })
+);
 
 module.exports = shared;

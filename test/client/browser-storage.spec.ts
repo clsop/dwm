@@ -1,8 +1,9 @@
 import { describe, it, before } from 'mocha';
 import * as sinon from 'sinon';
 
-import { StorageType } from '../src/client/lib/enums';
-import BrowserStorage from '../src/client/lib/browser-storage';
+import { StorageType } from '../../src/client/lib/enums';
+import BrowserStorage from '../../src/client/lib/browser-storage';
+import LocalStorage from '../../src/client/lib/local-storage';
 
 import StorageStubs from './storage-stubs';
 
@@ -11,10 +12,21 @@ describe('Browser storage', () => {
 
 	describe('Local storage', () => {
 		before(() => {
+			// setup
 			instance = BrowserStorage.getStorage(StorageType.Local);
 		});
 
+		it('uses localstorage as default', () => {
+			// setup
+			let storage: any = BrowserStorage.getStorage();
+
+			// assert
+			storage.should.not.be.null();
+			storage.should.be.instanceof(LocalStorage);
+		});
+
 		it('can get storage api', () => {
+			// assert
 			instance.should.not.be.null();
 		});
 

@@ -13,8 +13,5 @@
     "node_modules",
     "bower_components",
     "test"
-  ],
-  "dependencies": {
-    "skeleton-sass": "skeleton-sass-official#^3.1.4"
-  }
+  ]
 }

@@ -13,7 +13,7 @@ endpoint = {
 
 	"resource_methods": ['GET', 'POST'],
 	"item_methods": ['PUT'],
-	#"allowed_read_roles": ['driver', 'passenger'],
+	"allowed_read_roles": ['driver', 'passenger'],
 
 	"schema": user.schema
 }

@@ -1,7 +1,7 @@
-@import 'skeleton';
+// semantic ui overrides
+$icons-font-path: '';
+$flags-image-path: '';
 
-#app-context {
-	@include background-gradient(to bottom, 100%, 100%, $background-color1, $background-color2);
-	background-color: $background-color;
-	min-height: 100vh;
-}
+@import 'semantic-ui';
+
+@import 'main';

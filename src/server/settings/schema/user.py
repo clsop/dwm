@@ -23,9 +23,5 @@ schema = {
 		"minlength": 1,
 		"maxlength": 2,
 		"required": True
-	},
-	"token": {
-		"type": "string",
-		"required": False
 	}
 }

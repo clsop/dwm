@@ -7,6 +7,15 @@ import BrowserStorage from '../lib/browser-storage';
 import { StorageType } from '../lib/enums';
 import Service from '../service/service';
 
+enum LoginStatus {
+	NoServer = 0,
+	LoginNotFound = 100,
+	WrongLoginOrPass = 200,
+	MissingLogin = 300,
+	MissingPass = 400,
+	AlreadyLoggedIn = 500
+}
+
 export default class Login extends React.Component<RouteComponentProps<any>, State.Login> {
 	private Storage: BrowserStorage.IBrowserStorage;
 	private Service: Service<string>;
@@ -27,7 +36,9 @@ export default class Login extends React.Component<RouteComponentProps<any>, Sta
 
 		this.state = {
 			login: '',
-			passwd: ''
+			passwd: '',
+			hasError: false,
+			errorText: ''
 		};
 
 		this.authenticate = this.authenticate.bind(this);
@@ -46,7 +57,25 @@ export default class Login extends React.Component<RouteComponentProps<any>, Sta
 			// route to origin
 			this.props.history.push(this.props.location.state.from);
 		}).catch((reason: AjaxError) => {
-			console.error(reason);
+			if (reason.status > 0) {
+				let response: Models.LoginError = JSON.parse(reason.xhr.response);
+
+				// already logged in
+				if (response.LoginCode === 500) {
+					this.props.history.push(this.props.location.state ? this.props.location.state.from : '/');
+				} else {
+					this.setError(response.Message);
+				}
+			} else {
+				this.setError('Could not contact server!');
+			}
+		});
+	}
+
+	private setError(text: string): void {
+		this.setState({
+			hasError: true,
+			errorText: text
 		});
 	}
 
@@ -57,42 +86,30 @@ export default class Login extends React.Component<RouteComponentProps<any>, Sta
 	}
 
 	public render(): React.ReactElement<any> {
-		return <div className="row">
-			<div className="sixteen columns middle">
-				<div className="offset-by-four four columns">
-					<div id="login-form">
-						<div className="row">
-							<div className="offset-by-three eight columns">
-								<h3>Drive With Me</h3>
+		return <div className="middle aligned center">
+			<div className="column">
+				<h2 className="ui teal header">Drive With Me</h2>
+				<form className="ui large form">
+					<div className="ui stacked segment">
+						<div className="field">
+							<div className="ui left icon input">
+								<i className="user icon"></i>
+								<input type="text" id="login" name="login" placeholder="User"
+					 					value={this.state.login} onChange={this.inputChange} />
 							</div>
 						</div>
-						<form method="post" action="http://localhost:5000/login" onSubmit={this.authenticate}>
-							<div className="row">
-								<div className="four columns">
-									<label htmlFor="user" className="horizontal-align"><strong>User:</strong></label>
-								</div>
-								<div className="eight columns">
-									<input type="text" id="login" name="login" className="u-full-width"
-										value={this.state.login} onChange={this.inputChange} />
-								</div>
+						<div className="field">
+							<div className="ui left icon input">
+								<i className="lock icon"></i>
+								<input type="password" id="passwd" name="passwd" placeholder="Password"
+					 					value={this.state.passwd} onChange={this.inputChange} />
 							</div>
-							<div className="row">
-								<div className="four columns">
-									<label htmlFor="passwd" className="horizontal-align"><strong>Password:</strong></label>
-								</div>
-								<div className="eight columns">
-									<input type="password" id="passwd" name="passwd" className="u-full-width"
-										value={this.state.passwd} onChange={this.inputChange} />
-								</div>
-							</div>
-							<div className="row">
-								<div className="twelve columns">
-									<button type="submit" className="u-pull-right button-primary">Login</button>
-								</div>
-							</div>
-						</form>
+						</div>
+						<div className="ui fluid large teal submit button">Login</div>
 					</div>
-				</div>
+					<div className="ui error message"></div>
+				</form>
+				<div className="ui message"></div>
 			</div>
 		</div>;
 	}

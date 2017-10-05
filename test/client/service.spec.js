@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mocha_1 = require("mocha");
-var service_1 = require("../src/client/service/service");
+var service_1 = require("../../src/client/service/service");
 var browser_api_stubs_1 = require("./browser-api-stubs");
 mocha_1.describe('Service', function () {
     mocha_1.describe('Base service', function () {

@@ -1,16 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mocha_1 = require("mocha");
-var enums_1 = require("../src/client/lib/enums");
-var browser_storage_1 = require("../src/client/lib/browser-storage");
+var enums_1 = require("../../src/client/lib/enums");
+var browser_storage_1 = require("../../src/client/lib/browser-storage");
+var local_storage_1 = require("../../src/client/lib/local-storage");
 var storage_stubs_1 = require("./storage-stubs");
 mocha_1.describe('Browser storage', function () {
     var instance;
     mocha_1.describe('Local storage', function () {
         mocha_1.before(function () {
+            // setup
             instance = browser_storage_1.default.getStorage(enums_1.StorageType.Local);
         });
+        mocha_1.it('uses localstorage as default', function () {
+            // setup
+            var storage = browser_storage_1.default.getStorage();
+            // assert
+            storage.should.not.be.null();
+            storage.should.be.instanceof(local_storage_1.default);
+        });
         mocha_1.it('can get storage api', function () {
+            // assert
             instance.should.not.be.null();
         });
         mocha_1.it('can set an item', function () {

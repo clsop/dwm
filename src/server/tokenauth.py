@@ -14,5 +14,5 @@ class JWTAuth(TokenAuth):
 			return False
 		except jwt.ExpiredSignatureError as ex:
 			return False
-
+		
 		return any(role for role in allowed_roles if any(role in r for r in decodedToken[auth.settings['JWT_ROLES_CLAIM']]))

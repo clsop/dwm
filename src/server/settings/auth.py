@@ -2,7 +2,7 @@ from datetime import timedelta
 
 settings = {
 	"JWT_ALGORITHM": "HS256",
-	"JWT_SECRET": "makemeahash",
+	"JWT_SECRET": "makemeahash", # TODO: well!
 	"JWT_ISSUER": "shanknet:dwm",
 	"JWT_ROLES_CLAIM": "dwm:roles",
 	"JWT_EXPIRATION": timedelta(hours=4),

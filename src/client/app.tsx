@@ -14,10 +14,12 @@ export default class App extends React.Component<any, any> {
 
 	public render(): React.ReactElement<any> {
 		return <div id="app-context">
-			<Routes>
-				<AuthRoute path="/" exact={true} component={Home} />
-				<Route path="/login" exact={true} component={Login} />
-			</Routes>
+			<div className="ui grid">
+				<Routes>
+					<AuthRoute path="/" exact={true} component={Home} />
+					<Route path="/login" exact={true} component={Login} />
+				</Routes>
+			</div>
 		</div>;
 	}
 }
